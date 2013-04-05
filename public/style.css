@@ -1,0 +1,26 @@
+body{
+
+	background-color: #f6f6f6;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-weight: 300;
+	color: #aaaaaa;
+
+}
+
+div {
+	border: 1px solid #eee;
+}
+
+.top-right{
+	margin-left: 250px;
+	padding: 10px;
+}
+
+h1{
+
+}
+
+table.table {
+	width: 55%;
+	margin: auto;
+}

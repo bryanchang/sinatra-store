@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title> Sinatra Store </title>
+		<link rel="stylesheet" href="/style.css">
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<%= params['message'] if params.include? 'message' %>
+		<%= yield %>
+	</body>
+</html>

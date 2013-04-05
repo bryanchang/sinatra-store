@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title> Sinatra Store </title>
+		<link rel="stylesheet" href="/style.css">
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<table class="table table-striped">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+			</tr>
+			<% @rs.each do |row| %>		
+				<tr>
+					<td><%= row['id'] %></td>
+					<td><%= row['name'] %></td>
+				</tr>
+			<% end %>
+		</table>
+
+		<a href="/" class="btn">Home</a>
+		
+	</body>
+</html>
