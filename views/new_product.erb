@@ -7,6 +7,7 @@
 	</head>
 
 	<body>
+	  <div class='container'>
 		<h1>Add a new product</h1>
 
 		<form action='/products' method='post'>
@@ -20,9 +21,16 @@
 				<label for='product_name'>Product Price</label>
 					<input type='text' name="product_price"/>
 			</div>
+
+			<div class="row">
+				<input type="radio" name="product_on_sale" value="t">On sale</input>
+				<br>
+				<input type="radio" name="product_on_sale" value="f">
+				NOT on sale</input>
+			</div>
 		
 			<button> Save </button>
-		
 		</form>
+	  </div>
 	</body>
 </html>

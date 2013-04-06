@@ -1,37 +1,40 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-		<title> Sinatra Store </title>
-		<link rel="stylesheet" href="/style.css">
-		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-  </head>
 
-	<body>
+  <div class="container">	
 	<h1> List of Products</h1>
 	<div class="top-right">
-		<a href="products/new" class="btn btn-success">Add</a>
+		<a href="products/new" class="btn btn-success right">Add</a>
 	</div>
 
 		<table class="table table-striped">
 			<tr>
+				<th></th>
+				<th></th>
 				<th>Name</th>
 				<th>Price</th>
 				<th>On sale?</th>
+				<th>Twitter</th>
 			</tr>
 			<% @rs.each do |row| %>		
 				<tr>
+					<td><a href="/products/<%= row['id']%>/edit" class="btn button-small">Update</a></td>
+					<td>
+						<form action="products/<%= row['id']%>/delete" method="post">
+							<button class="btn btn-danger" type="submit">Delete</button>
+						</form>
+					</td>
 					<td><a href="/products/<%= row['id']%>"><%= row['name'] %></a></td>
 					<td><%= row['price'] %></td>
-					<td id="on_sale"><% if row['on_sale'] == 't' %>
-						<img src='foo.gif'>
+					<td id="on_sale" class="text-warning"><% if row['on_sale'] == 't' %>
+						SALE
 						<% end %>
+					</td>
+					<td>
+						<a href="products/search?q=<%= URI.escape(row['name']) %>">
+							Search Twitter
+						</a>
 					</td>
 				</tr>
 			<% end %>
 		</table>
-
-		<div id="home">
-			<a href="/" class="btn">home</a>
-		</div>
-	</body>
-</html>
+	</div>
+</div>

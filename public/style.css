@@ -1,8 +1,9 @@
 body{
 
 	background-color: #f6f6f6;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-family: "Helvetica Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 	font-weight: 300;
+	text-align: center;
 	color: #aaaaaa;
 
 }
@@ -11,9 +12,19 @@ div {
 	border: 1px solid #eee;
 }
 
-.top-right{
+.right{
 	margin-left: 250px;
 	padding: 10px;
+}
+
+.top{
+	padding:15px;
+	width: 500px;
+	margin: auto;
+	margin-bottom: 5px;
+	margin-bottom: 20px;
+	text-align: center;
+	border-bottom: 2px solid RGB(29,30,25);
 }
 
 h1{

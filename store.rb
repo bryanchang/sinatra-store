@@ -7,6 +7,7 @@ require 'sqlite3'
 require 'erubis'
 require 'open-uri'
 require 'json'
+require 'uri'
 # require "better_errors"
 
 # configure :development do
@@ -18,7 +19,6 @@ before do
   @db = SQLite3::Database.new "store.sqlite3"
   @db.results_as_hash = true
 end
-
 
 get '/' do
   erb :home
@@ -50,14 +50,21 @@ end
 post '/products' do
   name = params[:product_name]
   price = params[:product_price]
-  sql = "INSERT INTO products ('name', 'price') VALUES ('#{name}','#{price}');"
+  on_sale = params[:product_on_sale]
+  sql = "INSERT INTO products ('name', 'price','on_sale') VALUES ('#{name}','#{price}','#{on_sale}');"
   @rs = @db.execute(sql)
   # @name = name
   # @price = price
   redirect "/products"
 end
 
-get
+# search product name on twitter 
+get '/products/search' do
+  @q = params[:q]
+  file = open("http://search.twitter.com/search.json?q=#{URI.escape(@q)}")
+  @results = JSON.load(file.read)
+  erb :search_results
+end
   
 # show product details
 get '/products/:id' do
@@ -87,12 +94,28 @@ post '/products/:id' do
   erb :show_products_details
 end  
 
-get '/products/:id/delete' do
+post '/products/:id/delete' do
   @id = params[:id]
-  sql = "SELECT * FROM products WHERE id = #{@id};"
-  @row = @db.get_first_row sql
-  erb :delete_products
+  sql = "DELETE FROM products WHERE id = #{@id};"
+  @row = @db.execute(sql)
+  redirect '/products'
 end
 
-post '/products' do
+get '/products/search' do
+  @q = params[:q]
+  file = open("http://search.twitter.com/search.json?q=#{URI.escape(@q)}")
+  @results = JSON.load(file.read)
+  erb :search_results
 end
+
+get '/products/:id:/:q' do
+  @q = params[:q]
+  @id = params[:q]
+  
+  file = open("http://search.twitter.com/search.json?q=#{URI.escape(@q)}")
+  @results = JSON.load(file.read)
+  erb :search_results
+end
+
+#AIzaSyAypfaGqJYG0kPrsTGhzfZN2VXg0JcRS-0
+https://www.googleapis.com/shopping/search/v1/public/products?key=AIzaSyAypfaGqJYG0kPrsTGhzfZN2VXg0JcRS-0&country=US&q=digital+camera&alt=json
